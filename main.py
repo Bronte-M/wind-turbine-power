@@ -44,4 +44,16 @@ for cc in range(3):
 
     cc = cc + 1
 
-print(input_list)
+# place all items in input_list into separate variables for readability
+radius = input_list[0]
+efficiency = input_list[1] / 100  # convert percentage to decimal
+wind_speed = input_list[2]
+
+# check that efficiency is <= 1
+if efficiency > 1:
+    print('The efficiency value was more than 100%. Please re-enter values.')
+    exit()
+
+print(radius)
+print(efficiency)
+print(wind_speed)
