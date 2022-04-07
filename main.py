@@ -1,8 +1,13 @@
+# import math library
+import math
+
+# instructions for input
 instruction_list = ['Please enter the radius of the wind turbine in meters.',
                     'Please enter the efficiency of the wind turbine as a '
                     'percentage.', 'Please enter the average wind speed in '
                                    'm/s.']
 
+# initial instructions
 print('Your input may be a decimal, integer, or fraction consisting of integers.')
 
 input_list = []  # [radius, efficiency, wind_speed]
@@ -54,6 +59,5 @@ if efficiency > 1:
     print('The efficiency value was more than 100%. Please re-enter values.')
     exit()
 
-print(radius)
-print(efficiency)
-print(wind_speed)
+# calculate area
+area = math.pi * (radius ** 2)
