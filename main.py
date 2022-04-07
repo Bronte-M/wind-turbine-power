@@ -1,6 +1,9 @@
 # import math library
 import math
 
+#constants:
+air_density = 1.2 # kg/m^3
+
 # instructions for input
 instruction_list = ['Please enter the radius of the wind turbine in meters.',
                     'Please enter the efficiency of the wind turbine as a '
@@ -60,4 +63,11 @@ if efficiency > 1:
     exit()
 
 # calculate area
-area = math.pi * (radius ** 2)
+area = math.pi * (radius ** 2)  # m^2
+print('The area of the wind turbine is ' + str(area) + ' m^2.')
+
+# calculate the maximum power
+max_power = 0.5 * air_density * area * (wind_speed ** 3)  # Watts
+
+# print maximum power rounded to 4 decimal places
+print('The maximum power of the wind turbine is ' + str(round(max_power, 4)) + ' Watts.')
