@@ -1,8 +1,16 @@
-# import math library
+#######################################################################
+# Program Filename: main.py
+# Author:  Bronte McKinnis
+# Date: 4/7/2022
+# Description: Determine actual and max power of a wind turbine.
+# Input: radius (m), efficiency (%), average wind speed (m/s)
+# Output: max power (Watts), actual power (Watts)
+#######################################################################
+
 import math
 
 #constants:
-air_density = 1.2 # kg/m^3
+air_density = 1.2  # kg/m^3
 
 # instructions for input
 instruction_list = ['Please enter the radius of the wind turbine in meters.',
@@ -15,6 +23,7 @@ print('Your input may be a decimal, integer, or fraction consisting of integers.
 
 input_list = []  # [radius, efficiency, wind_speed]
 
+# loop prints input instructions, checks it's a number, and saves input to a list
 for cc in range(3):
 
     print(instruction_list[cc])
@@ -23,34 +32,36 @@ for cc in range(3):
     input_list.append(value)
 
     test_value = str(input_list[cc])  # the value that will be modified to test if it's a number
+    length = len(test_value)
 
-    # check if there is a decimal place
+    # check if there is a decimal place and no /
     if test_value.count(".") == 1 and test_value.count("/") == 0:
-        # replace the "." with a 1
-        test_value = test_value.replace(".", "1")
+        test_value = test_value.replace(".", "1")  # could still be a number
 
-    # check if there is a /
+    # check if there is a / not at the beginning
     elif test_value.count("/") == 1:
-        # replace the "/" with a 1
-        test_value = test_value.replace("/", "1")
+        if input_list[cc].find('/') != 0:
+            if input_list[cc].find('/') != (length - 1):
+                test_value = test_value.replace("/", "1")  #could still be a number
 
     # check if there are characters other than numbers
     if not test_value.isdecimal():
         print("One or more inputs was not a number, please re-enter values.")
         exit()
 
-    # check if the input is a fraction by finding /
+    # check if the input is a fraction by finding / and convert to decimal
     slash_position = input_list[cc].find("/")
+
     if slash_position != -1:
-        # if it is a fraction, find the percentage
         fraction = input_list[cc].split("/")
         input_list[cc] = float(fraction[0]) / float(fraction[1])
-        input_list[cc] = input_list[cc] * 100  # decimal to %
+
+        # for efficiency, change the decimal to a percentage
+        if cc == 1:
+            input_list[cc] = input_list[cc] * 100  # decimal to %
 
     # change value to a float type
     input_list[cc] = float(input_list[cc])
-
-    cc = cc + 1
 
 # place all items in input_list into separate variables for readability
 radius = input_list[0]
@@ -62,6 +73,9 @@ if efficiency > 1:
     print('The efficiency value was more than 100%. Please re-enter values.')
     exit()
 
+print(radius)
+print(efficiency)
+print(wind_speed)
 # calculate area
 area = math.pi * (radius ** 2)  # m^2
 print('The area of the wind turbine is ' + str(area) + ' m^2.')
@@ -69,5 +83,9 @@ print('The area of the wind turbine is ' + str(area) + ' m^2.')
 # calculate the maximum power
 max_power = 0.5 * air_density * area * (wind_speed ** 3)  # Watts
 
-# print maximum power rounded to 4 decimal places
 print('The maximum power of the wind turbine is ' + str(round(max_power, 4)) + ' Watts.')
+
+# calculate actual power
+actual_power = efficiency * max_power  # Watts
+1
+print('The actual power of the wind turbine is ' + str(round(actual_power, 4)) + ' Watts')
