@@ -37,7 +37,7 @@ for cc in range(3):
     if test_value.count(".") == 1 and test_value.count("/") == 0:
         test_value = test_value.replace(".", "1")  # could still be a number
 
-    # check if there is a / not at the beginning or end: 1 / is good
+    # check if there is 1 / not at the beginning or end
     elif test_value.count("/") == 1:
         if input_list[cc].find('/') != 0:
             if input_list[cc].find('/') != (length - 1):
